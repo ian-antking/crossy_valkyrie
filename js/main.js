@@ -24,7 +24,9 @@ gameScene.preload = function preload(){
 
 gameScene.create = function create(){
 
-    const centerY = (this.sys.game.config.height / 2);
+    const worldWidth = this.sys.game.config.width;
+    const worldHeight = this.sys.game.config.height;
+    const centerY = (worldHeight / 2);
 
     this.background = this.add.sprite(0,0, 'background');
     this.background.setOrigin(0);
@@ -32,7 +34,8 @@ gameScene.create = function create(){
     this.player = this.add.sprite(40, centerY, 'player');
     this.player.setScale(0.5);
 
-
+    this.treasure = this.add.sprite(worldWidth - 80, centerY, 'treasure');
+    this.treasure.setScale(0.6);
 };
 
 gameScene.update = function update(){
