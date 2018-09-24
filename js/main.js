@@ -44,4 +44,11 @@ gameScene.update = function update(){
         this.player.x += this.playerSpeed;
     };
 
+    if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.treasure.getBounds())){
+        this.gameOver();
+    };
 };
+
+gameScene.gameOver = function gameOver() {
+    this.scene.restart();
+}
