@@ -1,0 +1,14 @@
+{
+  "name": "crossy_valkyrie",
+  "version": "1.0.0",
+  "description": "crossing road game, made with phaser 3",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ian King",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.13.0"
+  }
+}
