@@ -50,6 +50,10 @@ gameScene.create = function create(){
 
     Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.5, -0.5);
 
+    Phaser.Actions.Call(this.enemies.getChildren(), function(enemy){
+        enemy.speed = Math.random() * 2 + 1;
+    }, this);
+
 };
 
 gameScene.update = function update(){
@@ -61,6 +65,21 @@ gameScene.update = function update(){
     if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.treasure.getBounds())){
         this.gameOver();
     };
+
+    let enemies = this.enemies.getChildren();
+    let numEnemies = enemies.length;
+
+    for (let enemy = 0; enemy < numEnemies; enemy +=1){
+        enemies[enemy].y += enemies[enemy].speed;
+
+        if (enemies[enemy].y >= this.enemyMaxY && enemies[enemy].speed > 0){
+            enemies[enemy].speed *= -1;
+        } else if (enemies[enemy].y <= this.enemyMinY && enemies[enemy].speed < 0){
+            enemies[enemy].speed *= -1;
+        }
+
+    }
+
 };
 
 gameScene.gameOver = function gameOver() {
