@@ -36,6 +36,20 @@ gameScene.create = function create(){
 
     this.treasure = this.add.sprite(worldWidth - 80, centerY, 'treasure');
     this.treasure.setScale(0.6);
+
+    this.enemies = this.add.group({
+        key: 'dragon',
+        repeat: 5,
+        setXY: {
+            x: 110,
+            y: 100,
+            stepX: 80,
+            stepY: 20,
+        }
+    });
+
+    Phaser.Actions.ScaleXY(this.enemies.getChildren(), -0.5, -0.5);
+
 };
 
 gameScene.update = function update(){
