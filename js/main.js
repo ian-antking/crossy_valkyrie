@@ -77,7 +77,11 @@ gameScene.update = function update(){
             enemy.speed *= -1;
         } else if (enemy.y <= this.enemyMinY && enemy.speed < 0){
             enemy.speed *= -1;
-        }
+        };
+
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemy.getBounds())){
+            this.gameOver();
+        };
 
     });
 
@@ -90,7 +94,7 @@ gameScene.update = function update(){
     //         enemies[enemy].speed *= -1;
     //     }
 
-    //     if(Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.enemies[enemy].getBounds())){
+    //     if(Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemies[enemy].getBounds())){
     //         this.gameOver();
     //     };
     
@@ -100,5 +104,7 @@ gameScene.update = function update(){
 };
 
 gameScene.gameOver = function gameOver() {
+    
+
     this.scene.restart();
 }
