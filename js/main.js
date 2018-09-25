@@ -54,16 +54,22 @@ gameScene.create = function create(){
         enemy.speed = Math.random() * 2 + 1;
     }, this);
 
+    this.playerAlive = true;
 };
 
 gameScene.update = function update(){
+
+    //is this nessesary?
+    // if (!this.playerAlive){
+    //     return;
+    // }
 
     if (this.input.activePointer.isDown){
         this.player.x += this.playerSpeed;
     };
 
     if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.treasure.getBounds())){
-        this.gameOver();
+        this.winGame();
     };
 
     let enemies = this.enemies.getChildren();
@@ -104,7 +110,19 @@ gameScene.update = function update(){
 };
 
 gameScene.gameOver = function gameOver() {
-    
+    this.playerAlive = false;
 
+    this.cameras.main.shake(500);
+
+    this.time.delayedCall(250, function() {
+        this.cameras.main.fade(250);
+    }, [], this);
+
+    this.time.delayedCall(500, function() {
+        this.scene.restart();
+    }, [], this);
+};
+
+gameScene.winGame = function winGame(){
     this.scene.restart();
-}
+};
