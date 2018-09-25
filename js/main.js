@@ -69,16 +69,33 @@ gameScene.update = function update(){
     let enemies = this.enemies.getChildren();
     let numEnemies = enemies.length;
 
-    for (let enemy = 0; enemy < numEnemies; enemy +=1){
-        enemies[enemy].y += enemies[enemy].speed;
 
-        if (enemies[enemy].y >= this.enemyMaxY && enemies[enemy].speed > 0){
-            enemies[enemy].speed *= -1;
-        } else if (enemies[enemy].y <= this.enemyMinY && enemies[enemy].speed < 0){
-            enemies[enemy].speed *= -1;
+    enemies.forEach(enemy => {
+        enemy.y += enemy.speed;
+
+        if (enemy.y >= this.enemyMaxY && enemy.speed > 0){
+            enemy.speed *= -1;
+        } else if (enemy.y <= this.enemyMinY && enemy.speed < 0){
+            enemy.speed *= -1;
         }
 
-    }
+    });
+
+    // for (let enemy = 0; enemy < numEnemies; enemy +=1){
+    //     enemies[enemy].y += enemies[enemy].speed;
+
+    //     if (enemies[enemy].y >= this.enemyMaxY && enemies[enemy].speed > 0){
+    //         enemies[enemy].speed *= -1;
+    //     } else if (enemies[enemy].y <= this.enemyMinY && enemies[enemy].speed > 0){
+    //         enemies[enemy].speed *= -1;
+    //     }
+
+    //     if(Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.enemies[enemy].getBounds())){
+    //         this.gameOver();
+    //     };
+    
+
+    // }
 
 };
 
