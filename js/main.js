@@ -59,10 +59,9 @@ gameScene.create = function create(){
 
 gameScene.update = function update(){
 
-    //is this nessesary?
-    // if (!this.playerAlive){
-    //     return;
-    // }
+    if (!this.playerAlive){
+        return;
+    }
 
     if (this.input.activePointer.isDown){
         this.player.x += this.playerSpeed;
@@ -85,7 +84,7 @@ gameScene.update = function update(){
             enemy.speed *= -1;
         };
 
-        if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemy.getBounds())){
+        if (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), enemy.getBounds()) && this.playerAlive){
             this.gameOver();
         };
 
